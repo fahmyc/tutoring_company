@@ -1,0 +1,18 @@
+<h2>New Tutor:</h2>
+
+<%= simple_form_for(@tutor) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+    <%= f.input :name, :required => true %>
+    <%= f.input :email, :required => true %>
+    <%= f.input :address, :required => true %>
+    <%= f.input :courses, collection: @courses, :as => :check_boxes, :item_wrapper_class => 'inline' %>
+    <%= f.input :primary_phone, :required => true %>
+    <%= f.input :secondary_phone %>
+    <%= f.input :city, :required => true %>
+    <%= f.input :notes, input_html: {style: 'height:100px; width:500px;'}  %>
+    <%= f.input :password, :required => true %>
+    <%= f.input :password_confirmation, :required => true %>
+
+  <%= f.button :submit, class: "btn btn-large btn-primary" %>
+<% end %>

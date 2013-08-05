@@ -1,0 +1,7 @@
+<h1><%= @student.student_name %></h1>
+
+<ul>
+	<% for course in @student.courses %>
+	<li>  <%= course %> </li>
+	<% end %>
+</ul>

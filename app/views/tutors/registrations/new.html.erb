@@ -1,0 +1,24 @@
+<h2>Sign up</h2>
+
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, :required => true %>
+    <%= f.input :email, :required => true %>
+    <%= f.input :address, :required => true %>
+    <%= f.input :courses, collection: @courses, :as => :check_boxes, :item_wrapper_class => 'inline' %>
+    <%= f.input :primary_phone, :required => true %>
+    <%= f.input :secondary_phone %>
+    <%= f.input :city, :required => true %>
+    <%= f.input :notes, input_html: {style: 'height:100px; width:500px;'}  %>
+    <%= f.input :password, :required => true %>
+    <%= f.input :password_confirmation, :required => true %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "tutors/shared/links" %>

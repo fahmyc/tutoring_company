@@ -1,4 +1,21 @@
 TutoringCompany::Application.routes.draw do
+  devise_for :admins
+
+  devise_for :tutors, :controllers => {:registrations => "registrations"}
+
+  devise_for :students, :controllers => {:registrations => "registrations"}
+
+  root :to => 'static_pages#home'
+
+  resources   :students
+  resources   :admins
+  resources   :tutors
+
+  match 'admins/:id',       to: 'admins#show', as: "admin_home"
+  match 'admins/:id/new_student', to: 'admins#new_student', as: 'new_student'
+  match 'admins/:id/new_tutor', to: 'admins#new_tutor', as: 'new_tutor'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
