@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130618185017) do
+ActiveRecord::Schema.define(:version => 20130809140930) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -31,15 +31,34 @@ ActiveRecord::Schema.define(:version => 20130618185017) do
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
   add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
 
-  create_table "sessions", :force => true do |t|
-    t.string   "student_id"
-    t.string   "tutor_id"
-    t.string   "date"
-    t.integer  "number_of_hours"
-    t.boolean  "first_time_session"
+  create_table "contracts", :force => true do |t|
+    t.integer  "student_id"
+    t.string   "contract_type"
+    t.integer  "hours_left"
+    t.integer  "tutor_1_id"
+    t.integer  "tutor_2_id"
+    t.integer  "tutor_3_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.text     "notes"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.decimal  "rate"
+  end
+
+  create_table "first_sessions", :force => true do |t|
+    t.integer  "tutor_id"
+    t.integer  "student_id"
+    t.string   "date"
+    t.string   "result_of_first_session"
+    t.text     "notes"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  create_table "matches", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "tutor_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "students", :force => true do |t|
@@ -74,6 +93,18 @@ ActiveRecord::Schema.define(:version => 20130618185017) do
   end
 
   add_index "students", ["reset_password_token"], :name => "index_students_on_reset_password_token", :unique => true
+
+  create_table "tutor_sessions", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "tutor_id"
+    t.date     "date"
+    t.decimal  "number_of_hours"
+    t.text     "notes"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "student_name"
+    t.string   "time"
+  end
 
   create_table "tutors", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

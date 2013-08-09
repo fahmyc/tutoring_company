@@ -1,1 +1,29 @@
-<h1> student list </h1>
+<h1> Student List </h1>
+
+<table id = "inbox_question_list", class="display">
+	<thead>
+		<tr>
+			<th>Parent Name</th>
+			<th>Student Name</th>
+			<th>Contract Edit</th>
+			<th>Date Added</th>
+			<th>City</th>
+			<th>Grade</th>
+			<th>E-Mail</th>
+		</tr>
+	</thead>
+
+<tbody>
+<% @students.each do |student| %>
+	<tr>
+		<td><strong><%= student.parent_name %></strong></td>
+		<td><strong><%= link_to "#{student.student_name}", admin_student_profile_path(student.id) %></strong></td>
+		<td><%= link_to "Contract Edit", student_contract_edit_path(current_admin, student.id) %></td>
+		<td><%= student.created_at.strftime("%I:%M %p") %> on <%= student.created_at.strftime("%d %b. %Y") %></td>
+		<td><%= student.city %></td>
+		<td><%= student.grade %></td>
+		<td><%= student.email %></td>
+	</tr>
+<% end %>
+</tbody>
+</table>

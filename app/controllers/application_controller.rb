@@ -11,6 +11,14 @@ def after_sign_in_path_for(resource)
    	end
 end
 
+def authenticate_admin_or_tutor!
+    if admin_signed_in?
+        true
+    else
+        authenticate_tutor!
+    end
+end
+
 
 #def after_sign_up_path_for(resource)
  #  	if resource.is_a?(Student)

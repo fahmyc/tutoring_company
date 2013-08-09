@@ -4,9 +4,15 @@ class RegistrationsController < Devise::RegistrationsController
     build_resource
 
     if resource.save
-      flash[:success] = "User Added!"
-      expire_session_data_after_sign_in!
-      respond_with resource, :location => admin_home_path(current_admin)
+      if resource.is_a?(Student)
+        flash[:success] = "Student Added!"
+        expire_session_data_after_sign_in!
+        respond_with resource, :location => admin_student_profile_path(resource)
+      else 
+        flash[:success] = "Tutor Added!"
+        expire_session_data_after_sign_in!
+        respond_with resource, :location => admin_home_path(current_admin)
+      end        
   	else
       render 'static_pages/home'
     end

@@ -7,6 +7,7 @@
 	<% if admin_signed_in? %>
 		<li><%= link_to 'Admin Home', admin_path(current_admin) %></li>
 		<li><%= link_to 'Student List', students_path %></li>
+    <li><%= link_to 'Tutor List', tutors_path %></li>
 		<li><%= link_to 'Sign Out',	destroy_admin_session_path, :method => :delete %></li>
 	<% end %>
 </ul>
@@ -14,6 +15,13 @@
 <ul class="nav pull-right">
   <% if student_signed_in? %>
 <li>STUDENT SIGNED IN</li>
+<li><%= link_to 'Sign Out', destroy_student_session_path, :method => :delete %></li>
+  <% end %>
+</ul>
+
+<ul class="nav pull-right">
+  <% if tutor_signed_in? %>
+<li><%= link_to "Submit Tutoring Hours", submit_hours_path(current_tutor) %></li>
 <li><%= link_to 'Sign Out', destroy_student_session_path, :method => :delete %></li>
   <% end %>
 </ul>

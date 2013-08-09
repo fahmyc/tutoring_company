@@ -1,0 +1,109 @@
+<h1>Student Profile</h1>
+
+<div class="row">
+	<div class="span6">
+		<h3>Parent name: <%= @student.parent_name %></h3>
+		<h3>Student name: <%= @student.student_name %></h3>
+	</div>
+
+	<div class="span6">
+		<%= button_to "First Session Submission", first_session_submission_path(@student), class: "btn btn-primary" %>
+		<% if @first_session.any? %>
+		<div class="pretty_table">
+		<table class="pretty">
+			<tr>
+				<th>Tutor Name</th>
+				<th>Date</th>
+				<th>Results of first session</th>
+				<th>Notes</th>
+			</tr>
+			<% for first in @first_session %>
+			<% tutor = Tutor.find(first.tutor_id) %>
+			<tr>
+				<td><%= tutor.name %></td>
+				<td><%= first.date %></td>
+				<td>
+					<% if first.result_of_first_session.nil? %>
+						<%= button_to "10 hour contract",update_10_hour_button_path(first.id, @student.id), class: "btn btn-default btn-xs" %>
+						<%= button_to "20 hour contract",update_20_hour_button_path(first.id, @student.id), class: "btn btn-default btn-xs" %>
+						<%= button_to "Continue-No Contract",update_continue_no_contract_button_path(first.id, @student.id), class: "btn btn-default btn-xs" %>
+						<%= button_to "Not to Continue",update_not_to_continue_button_path(first.id, @student.id), class: "btn btn-default btn-xs" %>
+					<% else %>
+						<%= first.result_of_first_session %>
+					<% end %>
+				</td>
+				<td><%= first.notes %></td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+		<% else %>
+			First Session has not been scheduled yet.
+		<% end %>
+
+	</div>
+</div>
+
+
+
+<h3>Contract Information:</h3>
+<%= link_to "New contracts", student_contract_edit_path(current_admin, @student.id) %>
+
+<table id = "inbox_question_list", class="display">
+	<thead>
+		<tr>
+			<th>Contract #</th>
+			<th>Date contract was created</th>
+			<th>Contract Type</th>
+			<th>Hours left</th>
+			<th>Tutor 1</th>
+			<th>Tutor 2</th>
+			<th>Tutor 3</th>
+			<th>Paid?</th>
+		</tr>
+	</thead>
+
+<tbody>
+<% @contracts.each do |contract| %>
+	<% if !contract.tutor_1_id.nil? %>
+		<% tutor1 = Tutor.find(contract.tutor_1_id) %>
+	<% end %>
+
+	<% if !contract.tutor_2_id.nil? %>
+		<% tutor2 = Tutor.find(contract.tutor_2_id) %>
+	<% end %>
+
+	<% if !contract.tutor_3_id.nil? %>
+		<% tutor3 = Tutor.find(contract.tutor_3_id) %>
+	<% end %>
+
+	<tr>
+		<td><strong><%= link_to "#{contract.id}", contract_notes_path(contract.id) %></strong></td>
+		<td><strong><%= contract.created_at.strftime("%I:%M %p") %> on <%= contract.created_at.strftime("%d %b. %Y") %></strong></td>
+		<td><strong><%= contract.contract_type %></strong></td>
+		<td><%= contract.hours_left %></td>
+
+		<% if !contract.tutor_1_id.nil? %>
+			<td><%= tutor1.name %></td>
+		<% else %>
+		<td> N/A </td>
+		<% end %>
+
+		<% if !contract.tutor_2_id.nil? %>
+			<td><%= tutor2.name %></td>
+		<% else %>
+		<td> N/A </td>
+		<% end %>
+
+		<% if !contract.tutor_3_id.nil? %>
+			<td><%= tutor3.name %></td>
+		<% else %>
+		<td> N/A </td>
+		<% end %>
+
+		<td>PAID?</td>
+
+	</tr>
+<% end %>
+</tbody>
+</table>

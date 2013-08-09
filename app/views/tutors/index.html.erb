@@ -1,0 +1,31 @@
+<h1>Tutor List</h1>
+
+<table id = "inbox_question_list", class="display">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>E-Mail</th>
+			<th>Courses</th>
+			<th>City</th>
+			<th>Address</th>
+			<th>Date added to system</th>
+		</tr>
+	</thead>
+
+<tbody>
+<% @tutors.each do |tutor| %>
+	<tr>
+		<td><strong><%= tutor.name %></strong></td>
+		<td><strong><%= tutor.email %></strong></td>
+		<td>
+			<% for course in tutor.courses %>
+				<li><%= course %></li>
+			<% end %>
+		</td>
+		<td><%= tutor.city %></td>
+		<td><%= tutor.address %></td>
+		<td><%= tutor.created_at.strftime("%I:%M %p") %> on <%= tutor.created_at.strftime("%d %b. %Y") %></td>
+	</tr>
+<% end %>
+</tbody>
+</table>

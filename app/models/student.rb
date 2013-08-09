@@ -11,6 +11,10 @@ class Student < ActiveRecord::Base
 	
 	serialize :courses
 
+  has_many :contracts
+  has_many :first_sessions
+  has_many :matchs
+
   belongs_to :admin
 
 before_save :clear_empty_courses

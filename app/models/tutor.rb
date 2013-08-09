@@ -13,6 +13,7 @@ class Tutor < ActiveRecord::Base
   serialize :grades
 
   belongs_to :admin
+  has_many :tutor_sessions
 
 before_save :clear_empty_courses
 

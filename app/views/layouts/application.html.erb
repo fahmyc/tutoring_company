@@ -2,8 +2,15 @@
 <html>
 <head>
   <title>Tutoring Company</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag "vendor", :media => "all", :debug => false %>
+<%= stylesheet_link_tag "application", :media => "all" %>
+<%= javascript_include_tag "vendor", :debug => false %>
+<%= javascript_include_tag "application" %>
+
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "jquery.ui.core.min" %>  
+  <%= javascript_include_tag "jquery.ui.widget.min" %>  
+  <%= javascript_include_tag "jquery.effects.core" %>  
   <%= csrf_meta_tags %>
 </head>
 <body>

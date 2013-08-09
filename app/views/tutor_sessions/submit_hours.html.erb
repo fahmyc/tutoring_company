@@ -1,0 +1,15 @@
+<h1>Submit Hours</h1>
+
+<%= simple_form_for(@tutor_session) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  	<%= f.input :student_name, collection: @student_names, :as => :radio, :item_wrapper_class => 'inline' %>
+  	<%= f.input :tutor_id, as: :hidden, :input_html => { :value => @tutor.id } %> 
+  	<%= f.input :date %>
+  	<%= f.input :number_of_hours, collection: [1, 1.5, 2, 2.5, 3], :as => :radio, :item_wrapper_class => 'inline', :hint => "&nbsp&nbsp&nbsp If the session was longer than 3 hours, please send me an email" %>
+    <%= f.input :time  %>
+    <%= f.input :notes, input_html: {style: 'height:100px; width:500px;'} %>
+
+
+	<%= f.button :submit, class: "btn btn-large btn-primary" %>
+<% end %>

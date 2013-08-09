@@ -1,0 +1,24 @@
+<h1>First Session Submission</h1>
+
+
+<div class = "row">
+<div class = "span9">
+<%= simple_form_for(@first_session) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  	<%= f.input :student_id, as: :hidden, :input_html => { :value => @student.id } %>
+  	<%= f.input :tutor_id, :label => (raw("<strong>Tutor</strong>")), collection: @tutor_ids, :as => :radio, :item_wrapper_class => 'inline' %>
+  	<%= f.input :date, :required => true %>
+    <%= f.input :notes, input_html: {style: 'height:100px; width:500px;'} %>
+
+	<%= f.button :submit, class: "btn btn-large btn-primary" %>
+<% end %>
+</div>
+
+<div class= "span3">
+	Tutor List
+    <% for tutor in @tutors %>
+      <li><%= tutor.id %> &nbsp <%= tutor.name %></li>
+    <% end %>
+</div>
+</div>
