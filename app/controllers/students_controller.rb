@@ -19,6 +19,35 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
+
+    @contracts_with_sessions = Contract.find(:all, :conditions => ["hours_left > ?", 0 ])
+    @contracts_with_sessions_ids = @contracts_with_sessions.collect(&:id)
+
+    @student_contract = Contract.find(:all, :conditions => { :student_id => @student.id, :id => @contracts_with_sessions_ids })
+
+    if @student_contract.any?
+      for x in @student_contract
+        a = x.id
+      end
+      @correct_contract = Contract.find(a)
+    end
+
+
+    
+  end
+
+  def student_sessions
+    @student = Student.find(params[:id])
+
+    @student_sessions = TutorSession.find(:all, :conditions => { :student_id => @student.id })
+  end
+
+  def your_tutors
+    @student = Student.find(params[:id])
+
+    @matches = Match.find(:all, :conditions => { :student_id => @student.id})
+    @tutor_ids = @matches.collect(&:tutor_id)
+    @tutors = Tutor.find(:all, :conditions => { :id => @tutor_ids })
   end
 
 end

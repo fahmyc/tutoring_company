@@ -1,0 +1,14 @@
+<h1>Contract Information</h1>
+<h3>Payment</h3>
+	<%= button_to "Mark as Paid",paid_button_path(@contract.id, @student.id), class: "btn btn-success btn-xs" %>
+
+	<%= button_to "Mark as NOT Paid",not_paid_button_path(@contract.id, @student.id), class: "btn btn-warning btn-xs" %>
+
+	<%= button_to "Mark as Cancelled",cancelled_button_path(@contract.id, @student.id), class: "btn btn-danger btn-xs" %>
+
+
+
+<p>Notes: <%= @contract.notes %></p>
+
+
+THIS PAGE SHOULD SHOW A TABLE OF EVERY TIME THE TUTOR SAID THEY WENT TO THE STUDENTS HOUSE AND DID HOURS WITH THE STUDENT

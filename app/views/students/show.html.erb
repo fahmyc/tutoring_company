@@ -1,7 +1,83 @@
-<h1><%= @student.student_name %></h1>
+<center><h1><%= @student.student_name %></h1></center>
 
-<ul>
-	<% for course in @student.courses %>
-	<li>  <%= course %> </li>
+<div class="row">
+
+<div class="span4">
+	<h4>Your courses:</h4>
+	<ul>
+		<% for course in @student.courses %>
+		<li>  <%= course %> </li>
+		<% end %>
+	</ul>
+</div>
+
+<div class="span4">
+	<h4>Your contract information:</h4>
+
+	<% if @student_contract.any? %>
+	<% if @correct_contract.hours_left.to_f > 0 %>
+		You have <strong><%= @correct_contract.hours_left %> hours</strong> remaining.
+<br>
+			<% if @correct_contract.status == "paid" %>
+				<span class="badge badge-success">PAID</span>
+			<% elsif @correct_contract.status == "cancelled" %>
+				<span class="badge badge-danger">Cancelled</span>
+			<% else %>
+				<span class="badge badge-warning">NOT PAID</span>
+			<% end %>
+
 	<% end %>
-</ul>
+	<% else %>
+		You have <strong> no sessions </strong> remaining.
+	<% end %>
+	
+</div>
+
+<div class="span1">
+	<br>
+</div>
+
+
+<div class="span3">
+<h4>Buy contract</h4>
+
+<% if @student.grade.to_i < 9 %>
+<!-- ELEMENTARY/MIDDLE SCHOOL FORM -->
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="KUYQ9PPE3Y8L6">
+<table>
+<tr><td><input type="hidden" name="on0" value="Options">Options</td></tr><tr><td><select name="os0">
+	<option value="One Hour">One Hour $45.00 CAD</option>
+	<option value="10 Hour Contract">10 Hour Contract $375.00 CAD</option>
+</select> </td></tr>
+</table>
+<input type="hidden" name="currency_code" value="CAD">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+<% else %>
+
+<!-- HIGH SCHOOL FORM -->
+	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+	<input type="hidden" name="cmd" value="_s-xclick">
+	<input type="hidden" name="hosted_button_id" value="4ZV5SJT46GK6A">
+	<table>
+	<tr><td><input type="hidden" name="on0" value="Options">Options</td></tr><tr><td><select name="os0">
+		<option>Choose...</option>
+		<option value="One Hour">One Hour ($50.00)</option>
+		<option value="10 Hour Contract">10 Hour Contract ($425.00)</option>
+	</select> </td></tr>
+	</table>
+	<input type="hidden" name="currency_code" value="CAD">
+	<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+	<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+	</form>
+
+<% end %>
+
+</div>
+
+
+</div>

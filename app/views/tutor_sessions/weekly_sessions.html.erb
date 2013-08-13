@@ -1,0 +1,31 @@
+Weekly Sessions
+
+<table id = "inbox_question_list", class="display">
+	<thead>
+		<tr>
+			<th>Week</th>
+			<th>Tutor Name</th>
+			<th>Student Name</th>
+			<th>Number of Hours</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Notes</th>
+		</tr>
+	</thead>
+
+	<tbody>
+			<% sessions.each do |session| %>
+				<% tutor = Tutor.find(session.tutor_id) %>
+				<tr>
+					<td><strong>Week <%= week %></strong></td>
+					<td><%= tutor.name %></td>
+					<td><%= session.student_name %></td>
+					<td><%= session.number_of_hours %></td>
+					<td><%= session.date %></td>
+					<td><%= session.time %></td>
+					<td><%= session.notes %></td>
+				<tr>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>

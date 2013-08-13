@@ -4,6 +4,10 @@
 	<div class="span6">
 		<h3>Parent name: <%= @student.parent_name %></h3>
 		<h3>Student name: <%= @student.student_name %></h3>
+		<h5>City: <%= @student.city %></h5>
+		<h5>Address: <%= @student.address %></h5>
+		<h5>Primary Phone: <%= @student.primary_phone %></h5>
+		<h5>Secondary Phone: <%= @student.secondary_phone %></h5>
 	</div>
 
 	<div class="span6">
@@ -78,7 +82,7 @@
 	<% end %>
 
 	<tr>
-		<td><strong><%= link_to "#{contract.id}", contract_notes_path(contract.id) %></strong></td>
+		<td><strong><%= link_to "#{contract.id}", contract_info_path(contract.id) %></strong></td>
 		<td><strong><%= contract.created_at.strftime("%I:%M %p") %> on <%= contract.created_at.strftime("%d %b. %Y") %></strong></td>
 		<td><strong><%= contract.contract_type %></strong></td>
 		<td><%= contract.hours_left %></td>
@@ -101,7 +105,15 @@
 		<td> N/A </td>
 		<% end %>
 
-		<td>PAID?</td>
+		<td>
+			<% if contract.status == "paid" %>
+				<center><span class="badge badge-success">PAID</span></center>
+			<% elsif contract.status == "cancelled" %>
+				<center><span class="badge badge-danger">Cancelled</span></center>
+			<% else %>
+				<center><span class="badge badge-warning">NOT PAID</span></center>
+			<% end %>
+		</td>
 
 	</tr>
 <% end %>

@@ -1,0 +1,21 @@
+<h1>Your Tutors</h1>
+
+<table id = "inbox_question_list", class="display">
+	<thead>
+		<tr>
+			<th>Tutor</th>
+			<th>Phone Number</th>
+			<th>E-mail</th>
+		</tr>
+	</thead>
+
+<tbody>
+<% @tutors.each do |tutor| %>
+	<tr>
+		<td><strong><%= tutor.name %></strong></td>
+		<td><strong><%= tutor.primary_phone %></strong></td>
+		<td><strong><%= tutor.email %></strong></td>
+	</tr>
+<% end %>
+</tbody>
+</table>

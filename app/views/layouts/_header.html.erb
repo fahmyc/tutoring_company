@@ -8,21 +8,28 @@
 		<li><%= link_to 'Admin Home', admin_path(current_admin) %></li>
 		<li><%= link_to 'Student List', students_path %></li>
     <li><%= link_to 'Tutor List', tutors_path %></li>
+    <li><%= link_to 'Tutor Sessions List', tutor_sessions_path %></li>
+    <li><%= link_to 'Contract List', contracts_path %></li>
+    <li><%= link_to 'First Session List', first_sessions_path %></li>
 		<li><%= link_to 'Sign Out',	destroy_admin_session_path, :method => :delete %></li>
 	<% end %>
 </ul>
 
 <ul class="nav pull-right">
   <% if student_signed_in? %>
-<li>STUDENT SIGNED IN</li>
+  <li><%= link_to 'Student Home', student_path(current_student) %></li>
+  <li><%= link_to 'Your Tutors', your_tutors_path(current_student) %></li>
+<li><%= link_to 'Your Sessions', student_sessions_path(current_student) %></li>
 <li><%= link_to 'Sign Out', destroy_student_session_path, :method => :delete %></li>
   <% end %>
 </ul>
 
 <ul class="nav pull-right">
   <% if tutor_signed_in? %>
-<li><%= link_to "Submit Tutoring Hours", submit_hours_path(current_tutor) %></li>
-<li><%= link_to 'Sign Out', destroy_student_session_path, :method => :delete %></li>
+  <li><%= link_to 'Tutor Home', tutor_path(current_tutor) %></li>
+    <li><%= link_to "Submit Tutoring Hours", submit_hours_path(current_tutor) %></li>
+    <li><%= link_to "Your Students", your_students_path(current_tutor) %></li>
+    <li><%= link_to 'Sign Out', destroy_student_session_path, :method => :delete %></li>
   <% end %>
 </ul>
 

@@ -3,13 +3,20 @@
 <%= simple_form_for(@tutor_session) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  	<%= f.input :student_name, collection: @student_names, :as => :radio, :item_wrapper_class => 'inline' %>
-  	<%= f.input :tutor_id, as: :hidden, :input_html => { :value => @tutor.id } %> 
-  	<%= f.input :date %>
-  	<%= f.input :number_of_hours, collection: [1, 1.5, 2, 2.5, 3], :as => :radio, :item_wrapper_class => 'inline', :hint => "&nbsp&nbsp&nbsp If the session was longer than 3 hours, please send me an email" %>
-    <%= f.input :time  %>
-    <%= f.input :notes, input_html: {style: 'height:100px; width:500px;'} %>
+  	<%= f.input :student_name,:label => (raw("<strong>Student Name</strong>")), collection: @student_names, :as => :radio, :item_wrapper_class => 'inline' %>
+
+  	<%= f.input :tutor_id, as: :hidden, :input_html => { :value => @tutor.id } %>
+  	<br>
+  	<%= f.input :date, :label => (raw("<strong>Date of Session</strong>")) %>
+  	<br>
+  	<%= f.input :first_session,:label => (raw("<strong>First Session?</strong> (if you are substituting for another teacher, choose 'No')")), :as => :radio, :item_wrapper_class => 'inline' %>
+  	<br>
+  	<%= f.input :number_of_hours,:label => (raw("<strong>Number of hours</strong>")), collection: [1, 1.5, 2, 2.5, 3], :as => :radio, :item_wrapper_class => 'inline', :hint => "&nbsp&nbsp&nbsp If the session was longer than 3 hours, please send me an email" %>
+    <br>
+    <%= f.input :time,:label => (raw("<strong>Time of Session</strong>")), collection: @hours, :as => :radio, :item_wrapper_class => 'inline' %>
+    <br>
+    <%= f.input :notes,:label => (raw("<strong>Notes</strong>")), input_html: {style: 'height:50px; width:800px;'} %>
 
 
-	<%= f.button :submit, class: "btn btn-large btn-primary" %>
+	<%= f.button :submit, "Submit session", class: "btn btn-large btn-primary" %>
 <% end %>

@@ -19,5 +19,7 @@ class TutorsController < ApplicationController
 
   def show
     @tutor = Tutor.find(params[:id])
+
+    @tutor_first_sessions = FirstSession.find(:all, :conditions => { :tutor_id => @tutor.id, :result_of_first_session => nil })
   end
 end

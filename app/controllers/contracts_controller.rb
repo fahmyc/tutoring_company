@@ -4,8 +4,9 @@ class ContractsController < ApplicationController
 		@student = Student.find(params[:student_id])
 		@contract = @student.contracts.build(params[:contract])
 
-		@tutors = Tutor.all
-  		@tutor_names = @tutors.collect(&:id)
+		@matches = Match.find(:all, :conditions => {:student_id => @student.id})
+  		@tutor_ids = @matches.collect(&:tutor_id)
+  		@tutors = Tutor.find(:all, :conditions => {:id => @tutor_ids})
 
 	end
 
@@ -61,8 +62,37 @@ class ContractsController < ApplicationController
 	    end
 	end
 
-	def contract_notes
+	def contract_info
 		@contract = Contract.find(params[:contract_id])
+		@student = Student.find(@contract.student_id)
+	end
+
+	def index
+		@contracts = Contract.all
+	end
+
+	def paid
+		@student = Student.find(params[:student_id])
+		@contract = Contract.find(params[:id])
+		@contract.update_attributes(status: "paid")
+		
+		redirect_to admin_student_profile_path(@student.id)
+	end
+
+	def not_paid
+		@student = Student.find(params[:student_id])
+		@contract = Contract.find(params[:id])
+		@contract.update_attributes(status: "not_paid")
+		
+		redirect_to admin_student_profile_path(@student.id)		
+	end
+
+	def cancelled
+		@student = Student.find(params[:student_id])
+		@contract = Contract.find(params[:id])
+		@contract.update_attributes(status: "cancelled")
+		
+		redirect_to admin_student_profile_path(@student.id)		
 	end
 
 end

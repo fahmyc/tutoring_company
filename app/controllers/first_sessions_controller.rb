@@ -6,6 +6,8 @@ class FirstSessionsController < ApplicationController
 
 		@tutors = Tutor.all
   		@tutor_ids = @tutors.collect(&:id)
+
+  		@hours = ["8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm", "9:00 pm", "10:00 pm"]
 	end
 
 	def create
@@ -62,6 +64,10 @@ class FirstSessionsController < ApplicationController
 		@first_session.update_attributes(result_of_first_session: "Not to continue")
 		
 		redirect_to admin_student_profile_path(@student.id)
+	end
+
+	def index
+		@first_sessions = FirstSession.all
 	end
 
 end

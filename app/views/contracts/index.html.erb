@@ -1,0 +1,71 @@
+<h1>Contract List</h1>
+
+<table id = "inbox_question_list", class="display">
+	<thead>
+		<tr>
+			<th>Contract #</th>
+			<th>Student</th>
+			<th>Date contract was created</th>
+			<th>Contract Type</th>
+			<th>Hours left</th>
+			<th>Tutor 1</th>
+			<th>Tutor 2</th>
+			<th>Tutor 3</th>
+			<th>Paid?</th>
+		</tr>
+	</thead>
+
+<tbody>
+<% @contracts.each do |contract| %>
+	<% student = Student.find(contract.student_id) %>
+	<% if !contract.tutor_1_id.nil? %>
+		<% tutor1 = Tutor.find(contract.tutor_1_id) %>
+	<% end %>
+
+	<% if !contract.tutor_2_id.nil? %>
+		<% tutor2 = Tutor.find(contract.tutor_2_id) %>
+	<% end %>
+
+	<% if !contract.tutor_3_id.nil? %>
+		<% tutor3 = Tutor.find(contract.tutor_3_id) %>
+	<% end %>
+
+	<tr>
+		<td><strong><%= link_to "#{contract.id}", contract_info_path(contract.id) %></strong></td>
+		<td><strong><%= link_to "#{student.student_name}", admin_student_profile_path(student.id) %></strong></td>
+		<td><strong><%= contract.created_at.strftime("%I:%M %p") %> on <%= contract.created_at.strftime("%d %b. %Y") %></strong></td>
+		<td><strong><%= contract.contract_type %></strong></td>
+		<td><%= contract.hours_left %></td>
+
+		<% if !contract.tutor_1_id.nil? %>
+			<td><%= tutor1.name %></td>
+		<% else %>
+		<td> N/A </td>
+		<% end %>
+
+		<% if !contract.tutor_2_id.nil? %>
+			<td><%= tutor2.name %></td>
+		<% else %>
+		<td> N/A </td>
+		<% end %>
+
+		<% if !contract.tutor_3_id.nil? %>
+			<td><%= tutor3.name %></td>
+		<% else %>
+		<td> N/A </td>
+		<% end %>
+
+		<td>
+			<% if contract.status == "paid" %>
+				<center><span class="badge badge-success">PAID</span></center>
+			<% elsif contract.status == "cancelled" %>
+				<center><span class="badge badge-danger">Cancelled</span></center>
+			<% else %>
+				<center><span class="badge badge-warning">NOT PAID</span></center>
+			<% end %>
+		</td>
+
+	</tr>
+<% end %>
+</tbody>
+</table>

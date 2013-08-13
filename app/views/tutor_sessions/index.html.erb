@@ -1,0 +1,35 @@
+<h1>Tutor Session List</h1>
+
+
+<table id = "inbox_question_list", class="display">
+	<thead>
+		<tr>
+			<th>Session ID</th>
+			<th>Week</th>
+			<th>Tutor Name</th>
+			<th>Student Name</th>
+			<th>First session?</th>
+			<th>Number of Hours</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Notes</th>
+		</tr>
+	</thead>
+
+<tbody>
+<% @tutor_sessions.each do |session| %>
+	<% tutor = Tutor.find(session.tutor_id) %>
+	<tr>
+		<td><%= session.id %></td>
+		<td><strong><%= session.week %></strong></td>
+		<td><strong><%= tutor.name %></strong></td>
+		<td><%= session.student_name %></td>
+		<td><%= session.first_session %></td>
+		<td><%= session.number_of_hours %></td>
+		<td><%= session.date %></td>
+		<td><%= session.time %></td>
+		<td><%= session.notes %></td>
+	</tr>
+<% end %>
+</tbody>
+</table>

@@ -1,0 +1,33 @@
+<h1>First Sessions</h1>
+
+<table id = "inbox_question_list", class="display">
+	<thead>
+		<tr>
+			<th>First Session No.</th>
+			<th>Tutor</th>
+			<th>Student</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Result of First Session</th>
+			<th>TUTOR Notes</th>
+			<th>Admin Notes</th>
+		</tr>
+	</thead>
+
+<tbody>
+<% @first_sessions.each do |session| %>
+	<% tutor = Tutor.find(session.tutor_id) %>
+	<% student = Student.find(session.student_id) %>
+	<tr>
+		<td><%= session.id %></td>
+		<td><strong><%= tutor.name %></strong></td>
+		<td><strong><%= link_to "#{student.student_name}", admin_student_profile_path(student.id) %></strong></td>
+		<td><%= session.date %></td>
+		<td><%= session.time %></td>
+		<td><%= session.result_of_first_session %></td>
+		<td><%= session.tutor_notes %></td>
+		<td><%= session.notes %></td>
+	</tr>
+<% end %>
+</tbody>
+</table>

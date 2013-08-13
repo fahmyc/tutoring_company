@@ -5,15 +5,15 @@
 
 <h2>New Contract:</h2>
 <div class = "row">
-<div class = "span9">
+<div class = "span8">
 <%= simple_form_for @contract do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
   	<%= f.input :contract_type, :label => (raw("<strong>Contract Type</strong>")), collection: ["10 hour", "20 hour", "See notes"], :as => :radio, :item_wrapper_class => 'inline'   %>
   	<%= f.input :hours_left, :label => (raw("<strong>Hours Left</strong>")), :required => true %>
-    <%= f.input :tutor_1_id, :label => (raw("<strong>Tutor 1</strong>")), collection: @tutor_names, :as => :radio, :item_wrapper_class => 'inline' %>
-    <%= f.input :tutor_2_id, :label => (raw("<strong>Tutor 2</strong>")), collection: @tutor_names, :as => :radio, :item_wrapper_class => 'inline' %>
-    <%= f.input :tutor_3_id, :label => (raw("<strong>Tutor 3</strong>")), collection: @tutor_names, :as => :radio, :item_wrapper_class => 'inline' %>
+    <%= f.input :tutor_1_id, :label => (raw("<strong>Tutor 1</strong>")), collection: @tutors, :as => :radio, :item_wrapper_class => 'inline' %>
+    <%= f.input :tutor_2_id, :label => (raw("<strong>Tutor 2</strong>")), collection: @tutors, :as => :radio, :item_wrapper_class => 'inline' %>
+    <%= f.input :tutor_3_id, :label => (raw("<strong>Tutor 3</strong>")), collection: @tutors, :as => :radio, :item_wrapper_class => 'inline' %>
     <%= f.input :student_id, as: :hidden, :input_html => { :value => @student.id } %> 
     <br>
     <%= f.input :rate, :label => (raw("<strong>Rate</strong> ($42.50 for regular high school, $37.50 for regular elementary school)")) %>    
@@ -24,8 +24,8 @@
 <% end %>
 </div>
 
-<div class = "span3">
-  Tutor List
+<div class = "span4">
+  Tutor List Matched with <%= @student.student_name %>
     <% for tutor in @tutors %>
       <li><%= tutor.id %> &nbsp <%= tutor.name %></li>
     <% end %>

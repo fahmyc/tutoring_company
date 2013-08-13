@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130809140930) do
+ActiveRecord::Schema.define(:version => 20130812231710) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20130809140930) do
   create_table "contracts", :force => true do |t|
     t.integer  "student_id"
     t.string   "contract_type"
-    t.integer  "hours_left"
+    t.decimal  "hours_left"
     t.integer  "tutor_1_id"
     t.integer  "tutor_2_id"
     t.integer  "tutor_3_id"
@@ -42,16 +42,19 @@ ActiveRecord::Schema.define(:version => 20130809140930) do
     t.datetime "updated_at",    :null => false
     t.text     "notes"
     t.decimal  "rate"
+    t.string   "status"
   end
 
   create_table "first_sessions", :force => true do |t|
     t.integer  "tutor_id"
     t.integer  "student_id"
-    t.string   "date"
+    t.date     "date",                    :limit => 255
     t.string   "result_of_first_session"
     t.text     "notes"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.text     "tutor_notes"
+    t.string   "time"
   end
 
   create_table "matches", :force => true do |t|
@@ -104,6 +107,8 @@ ActiveRecord::Schema.define(:version => 20130809140930) do
     t.datetime "updated_at",      :null => false
     t.string   "student_name"
     t.string   "time"
+    t.integer  "week"
+    t.boolean  "first_session"
   end
 
   create_table "tutors", :force => true do |t|
