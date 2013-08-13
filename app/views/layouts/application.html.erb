@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <title>Tutoring Company</title>
 <%= stylesheet_link_tag "vendor", :media => "all", :debug => false %>
 <%= stylesheet_link_tag "application", :media => "all" %>
@@ -27,5 +28,16 @@
   <%= debug(params) if Rails.env.development? %>
 
 </div>
+
+  <title>TutoringCompany</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+
 </body>
 </html>

@@ -1,4 +1,5 @@
 TutoringCompany::Application.routes.draw do
+<<<<<<< HEAD
   devise_for :admins
 
   devise_for :tutors, :controllers => {:registrations => "registrations"}
@@ -38,6 +39,7 @@ TutoringCompany::Application.routes.draw do
   match '/contracts/:id/:student_id/paid' => 'contracts#paid', :as => 'paid_button'
   match '/contracts/:id/:student_id/not_paid' => 'contracts#not_paid', :as => 'not_paid_button'
   match '/contracts/:id/:student_id/cancelled' => 'contracts#cancelled', :as => 'cancelled_button'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
