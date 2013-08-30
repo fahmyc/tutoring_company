@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 #source :rubygems
 #http://efreedom.com/Question/1-9686870/Find-Gem-Therubyracer-Linux-Server-Passenger
 
+ruby '2.0.0'
+
 gem 'rails', '3.2.13'
 gem 'bootstrap-sass', '2.1'
 gem 'bcrypt-ruby', '3.0.1'
