@@ -24,8 +24,6 @@ gem 'yaml_db'
 #gem 'therubyracer', :platforms => :ruby
 
 
-
-
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'rspec-rails', '2.11.0'
@@ -54,9 +52,8 @@ group :test do
 end
 
 group :production do
-  gem 'mysql'
-  #gem 'pg', '0.12.2'
-
+  gem 'pg', '0.15.1'
+  gem 'rails_12factor', '0.0.2'
 end
 
 group :development do
