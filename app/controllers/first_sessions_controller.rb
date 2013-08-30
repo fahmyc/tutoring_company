@@ -7,13 +7,14 @@ class FirstSessionsController < ApplicationController
 		@tutors = Tutor.all
   		@tutor_ids = @tutors.collect(&:id)
 
-  		@hours = ["8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm", "9:00 pm", "10:00 pm"]
+  		@hours = ["8:00 am", "8:30 am", "9:00 am", "9:30 am", "10:00 am",  "10:30 am","11:00 am","11:30 am", "12:00 pm", "12:30 pm", "1:00 pm",  "1:30 pm", "2:00 pm",  "2:30 pm", "3:00 pm", "3:30 pm", "4:00 pm", "4:30 pm","5:00 pm", "5:30 pm","6:00 pm","6:30 pm", "7:00 pm","7:30 pm", "8:00 pm", "8:30 pm", "9:00 pm", "9:30 pm","10:00 pm"]
 	end
 
 	def create
 		@student = Student.find(params[:first_session][:student_id])
 		@first_session = @student.first_sessions.build(params[:first_session])
-    	
+    	@tutor = Tutor.find(params[:first_session][:tutor_id])
+
 		@duplicate_match = Match.find(:all, :conditions => { :student_id => params[:first_session][:student_id], :tutor_id => params[:first_session][:tutor_id] })
 		
 		if !@duplicate_match.any?
@@ -24,13 +25,11 @@ class FirstSessionsController < ApplicationController
     	end	
 
     	if @first_session.save
+    		UserMailer.first_session_email(@student, @tutor, @first_session).deliver
     		flash[:success] = "First Session Submitted!"
-
-    		
-
     		redirect_to admin_student_profile_path(@student.id)
 	    else
-	      render 'static_pages/home'
+	      render 'static_pages/bad'
 	    end
 	end
 

@@ -25,13 +25,26 @@ class StudentsController < ApplicationController
 
     @student_contract = Contract.find(:all, :conditions => { :student_id => @student.id, :id => @contracts_with_sessions_ids })
 
-    if @student_contract.any?
+##In case students pay for multiple contracts at the same time
+    if @student_contract.count<2 && @student_contract.count>0
       for x in @student_contract
         a = x.id
       end
       @correct_contract = Contract.find(a)
     end
 
+    if @student_contract.count>1
+      counter = 0
+      for x in @student_contract
+        hours_left = x.hours_left
+        counter = counter + hours_left.to_f
+      end
+      @hours_remaining_in_multiple_contracts = counter
+    end
+
+    @all_students_contracts = Contract.find(:all, :conditions => {:student_id => @student.id})
+    @last_contract = @all_students_contracts.last
+    @hours_in_arrears = @last_contract.hours_left.to_i.abs
 
     
   end
@@ -48,6 +61,9 @@ class StudentsController < ApplicationController
     @matches = Match.find(:all, :conditions => { :student_id => @student.id})
     @tutor_ids = @matches.collect(&:tutor_id)
     @tutors = Tutor.find(:all, :conditions => { :id => @tutor_ids })
+  end
+
+  def update
   end
 
 end

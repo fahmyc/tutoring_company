@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130812231710) do
+ActiveRecord::Schema.define(:version => 20130829232854) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -38,11 +38,12 @@ ActiveRecord::Schema.define(:version => 20130812231710) do
     t.integer  "tutor_1_id"
     t.integer  "tutor_2_id"
     t.integer  "tutor_3_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.text     "notes"
     t.decimal  "rate"
     t.string   "status"
+    t.text     "payment_information"
   end
 
   create_table "first_sessions", :force => true do |t|
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130812231710) do
     t.datetime "updated_at",                             :null => false
     t.text     "tutor_notes"
     t.string   "time"
+    t.string   "subject"
   end
 
   create_table "matches", :force => true do |t|
@@ -62,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20130812231710) do
     t.integer  "tutor_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.decimal  "wage"
   end
 
   create_table "students", :force => true do |t|
@@ -93,6 +96,9 @@ ActiveRecord::Schema.define(:version => 20130812231710) do
     t.string   "email"
     t.integer  "admin_id"
     t.string   "courses"
+    t.string   "recommended_by_student"
+    t.string   "recommended_by_other"
+    t.string   "recommendations"
   end
 
   add_index "students", ["reset_password_token"], :name => "index_students_on_reset_password_token", :unique => true

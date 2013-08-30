@@ -1,0 +1,8 @@
+<h1>Edit Match</h1>
+
+<h3>Update Wage:</h3>
+
+<%= simple_form_for(@match) do |f| %>
+		<%= f.input :wage, collection: @wages, as: :radio, :item_wrapper_class => 'inline' %>
+		<%= f.button :submit, "Update wage", class: "btn btn-large btn-primary" %>
+<% end %>

@@ -9,7 +9,8 @@
   	<%= f.input :student_id, as: :hidden, :input_html => { :value => @student.id } %>
   	<%= f.input :tutor_id, :label => (raw("<strong>Tutor</strong>")), collection: @tutor_ids, :as => :radio, :item_wrapper_class => 'inline' %>
   	<%= f.input :date, :required => true %>
-    <%= f.input :time,:label => (raw("<strong>Time of Session</strong>")), collection: @hours, :as => :radio, :item_wrapper_class => 'inline' %>
+    <%= f.input :time,:label => (raw("<strong>Time of Session</strong>")), collection: @hours, :as => :select, :item_wrapper_class => 'inline', required: true %>
+    <%= f.input :subject, :label => (raw("<strong>Subject</strong>")) %>
     <%= f.input :tutor_notes, :label => "TUTORS NOTES (make sure to include grade and subject)", input_html: {style: 'height:100px; width:500px;'} %>
     <%= f.input :notes, :label => "MY NOTES (tutor won't see)", input_html: {style: 'height:100px; width:500px;'} %>
 

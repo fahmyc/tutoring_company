@@ -55,6 +55,8 @@ class ContractsController < ApplicationController
 
 
     	if @contract.save
+    		UserMailer.new_contract(@student, @contract).deliver
+    		UserMailer.admin_new_contract(@student, @contract).deliver
     		flash[:success] = "Contract Added!"
     		redirect_to admin_student_profile_path(@student.id)
 	    else

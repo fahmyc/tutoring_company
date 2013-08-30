@@ -1,0 +1,29 @@
+<H1>DONT FORGET TO SEND INVOICE!!!!</H1>
+
+Contract Information:
+<p>Student:<%= @student.student_name%></p>
+<p>Contract Type:<%= @contract.contract_type%></p>
+<p>Hours Left:<%= @contract.hours_left%></p>
+<p>Rates:<%= @contract.rate%></p>
+
+	<% tutor1 = Tutor.find(@contract.tutor_1_id) %>
+
+
+
+<p>Tutor1:<%= tutor1.name %></p>
+
+<% if !@contract.tutor_2_id.nil? %>
+	<% tutor2 = Tutor.find(@contract.tutor_2_id) %>
+	<p>Tutor2:<%= tutor2.name %></p>
+<% end %>
+
+<% if !@contract.tutor_3_id.nil? %>
+	<% tutor3 = Tutor.find(@contract.tutor_3_id) %>
+	<p>Tutor3:<%= tutor3.name %></p>
+<% end %>
+
+<p>Created At:<%= @contract.created_at%></p>
+<p>Notes:<%= @contract.notes %></p>
+
+
+

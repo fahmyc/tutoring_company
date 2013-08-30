@@ -1,5 +1,4 @@
 TutoringCompany::Application.routes.draw do
-<<<<<<< HEAD
   devise_for :admins
 
   devise_for :tutors, :controllers => {:registrations => "registrations"}
@@ -16,6 +15,8 @@ TutoringCompany::Application.routes.draw do
   resources   :matches
   resources   :tutor_sessions
 
+  match 'bad', to: 'static_pages#bad', as:"bad"
+  match 'tutor_instructions', to: 'static_pages#tutor_instructions', as:'tutor_instructions'
 
   match 'admins/:id',       to: 'admins#show', as: "admin_home"
   match 'admins/:id/new_student', to: 'admins#new_student', as: 'new_student'
@@ -29,7 +30,18 @@ TutoringCompany::Application.routes.draw do
 
   match 'tutor_sessions/weekly_sessions/:week_id', to:'tutor_sessions#weekly_sessions', as:'weekly_sessions'
   match 'tutors/your_students/:id', to:'tutors#your_students', as:'your_students'
-  match 'tutors/your_tutors/:id', to:'students#your_tutors', as:'your_tutors'
+  match 'students/your_tutors/:id', to:'students#your_tutors', as:'your_tutors'
+  match 'tutors/your_sessions/:id', to:'tutors#your_sessions', as:'your_sessions'
+
+  match 'match/:id/edit_match', to:'matches#edit_match', as:'edit_match'
+  match 'payments_to_tutors/payments', to: 'payments_to_tutors#land', as:'payments_to_tutors'
+  match 'payments_to_tutors/payments/:week', to: 'payments_to_tutors#weekly_payments', as:'weekly_payments_to_tutors'
+  
+  match 'tutors/edit_session/:id/:tutor_session_id', to: 'tutors#edit_session', as: 'edit_session' 
+
+  match 'admins/recommendations_edit/:id/:student_id', to: 'admins#edit_recommendations', as: 'edit_recommendations'
+
+
   #buttons
   match '/first_session/:id/:student_id/10_hour_contract' => 'first_sessions#ten_hour', :as => 'update_10_hour_button'
   match '/first_session/:id/:student_id/20_hour_contract' => 'first_sessions#twenty_hour', :as => 'update_20_hour_button'
@@ -39,6 +51,10 @@ TutoringCompany::Application.routes.draw do
   match '/contracts/:id/:student_id/paid' => 'contracts#paid', :as => 'paid_button'
   match '/contracts/:id/:student_id/not_paid' => 'contracts#not_paid', :as => 'not_paid_button'
   match '/contracts/:id/:student_id/cancelled' => 'contracts#cancelled', :as => 'cancelled_button'
+
+  ##buttons for recommendations
+  match 'admins/recommended_by/:id/:student_id/:student_id2', to: 'admins#recommended_by_student', :as => 'recommended_by_button'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

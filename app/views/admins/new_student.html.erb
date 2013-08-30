@@ -4,22 +4,23 @@
 <%= simple_form_for(@student) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  	<%= f.input :parent_name, :required => true %>
-  	<%= f.input :student_name, :required => true %>
-  	<%= f.input :email, :required => true %>
-  	<%= f.input :gender, collection: ["Male", "Female"], :as => :radio, :item_wrapper_class => 'inline' %>
-  	<%= f.input :address, :required => true %>
-    <%= f.input :courses, collection: @courses, :as => :check_boxes, :required => true, :item_wrapper_class => 'inline' %>
+    <%= f.input :parent_name, :required => true %>
+    <%= f.input :student_name, :required => true %>
+    <%= f.input :email, :required => true %>
+    <%= f.input :gender, collection: ["Male", "Female"], :as => :radio, :item_wrapper_class => 'inline' %>
+    <%= f.input :address, :required => true %>
+    <%= f.input :city, :required => true %>    
+    <%= f.input :courses, collection: @courses, :as => :check_boxes, :item_wrapper_class => 'inline' %>
     <%= f.input :primary_phone, :required => true %>
     <%= f.input :secondary_phone %>
-    <%= f.input :city, :required => true %>
     <%= f.input :grade, collection: @grades, :as => :radio, :item_wrapper_class => 'inline' %>
     <%#= f.input :tutor_assigned, collection: @tutor_names, :as => :check_boxes, :item_wrapper_class => 'inline' %>
     <%= f.input :school %>
     <%= f.input :how_they_heard %>
+    <%= f.input :recommended_by_other %>
     <%= f.input :notes, input_html: {style: 'height:100px; width:500px;'} %>
     <%= f.input :password, :required => true %>
     <%= f.input :password_confirmation, :required => true %>
 
-	<%= f.button :submit, class: "btn btn-large btn-primary" %>
+  <%= f.button :submit, class: "btn btn-large btn-primary" %>
 <% end %>

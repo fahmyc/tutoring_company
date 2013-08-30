@@ -1,0 +1,47 @@
+<h1>Recommended by</h1>
+
+<%= link_to "Back to Student Profile", admin_student_profile_path(@student.id) %>
+
+
+<% if !@student.recommended_by_student.nil? %>
+	<% s = Student.find(@student.recommended_by_student) %>
+	<%= @student.student_name %> was recommended by <strong><%= s.student_name %></strong>.
+
+<% elsif !@student.recommended_by_other.nil? %>
+	<%= @student.student_name %> was recommended by <%= @student.recommended_by_other %>.
+
+<% end %>
+<br><br>
+<h4>Update Recommendations</h4>
+<div class="row">
+	<div class="span6">
+		<h5>Recommended by another student </h5>
+			<div class="btn-group">
+				<button class="btn">Recommendations</button>
+					<button class="btn dropdown-toggle" data-toggle="dropdown">
+						<span class="caret"></span>
+					</button>
+				<ul class="dropdown-menu">
+					<% for student in @all_students_names %>
+						<% exact_student = Student.find_by_student_name(student) %>
+						<%= link_to "#{student}",recommended_by_button_path(current_admin, @student.id, exact_student.id) %>
+					<% end %>
+				</ul>
+			</div>
+	</div>
+	<div class="span6">
+		<h5>Recommended by someone else </h5>			
+			<!--
+			<%= simple_form_for(@student) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+   				 	<%= f.input :recommended_by_other %>
+   				<%= f.button :submit, class: "btn btn-large btn-primary" %>
+			<% end %>
+			-->
+			Going to have to use rails console to do this, can't figure it out and no time.
+	</div>
+</div>
+
+
+
+

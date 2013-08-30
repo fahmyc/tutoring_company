@@ -1,0 +1,20 @@
+<h2>You've just put in a new student.</h2>
+
+<p>Student Name: <%= @student.student_name %></p>
+<p>Parent Name: <%= @student.parent_name %></p>
+<p>Gender: <%= @student.gender %></p>
+<p>Email: <%= @student.email %></p>
+<p>Address: <%= @student.address %></p>
+<p>City: <%= @student.city %></p>
+<p>Primary Phone Number: <%= @student.primary_phone %></p>
+<p>Secondary Phone Number: <%= @student.secondary_phone %></p>
+<p>Student Grade: <%= @student.grade %></p>
+<p>Notes: <%= @student.notes %></p>
+<p>
+	Student Courses:
+	<% for course in @student.courses %>
+		<li><%=course%></li>
+	<% end %>
+</p>
+
+<p>Password: <%= @student.password %></p>

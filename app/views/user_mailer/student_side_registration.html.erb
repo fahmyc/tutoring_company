@@ -1,0 +1,44 @@
+<p>Hello <%= @student.parent_name %>,</p>
+
+<p>
+Welcome to Mind Over Matter Tutoring! We are looking forward to helping <%= @student.student_name %> reach
+<% if @student.gender == "Male" %>
+	his
+<% else %>
+	her
+<% end %>
+
+goals!</p>
+
+<p><strong>What is this back-office website used for?</strong></p>
+<ul>
+	<li>Payment and contract information</li>
+	<li>Tracking how many hours you have remaining on your contract</li>
+	<li>See a list of your tutors and their contact information</li>
+	<li>Track all of your past sessions</li>
+</ul>
+
+<p>
+Here is your user and log-in information, if you ever need to add courses or change any information please let us know by calling (416) 402 - 8463 or sending us an email at info@movermtutoring.com! To log in, use your email and the password.
+</p>
+
+<p><strong>Student Name:</strong> <%= @student.student_name %></p>
+<p><strong>Parent Name:</strong> <%= @student.parent_name %></p>
+<p><strong>Email:</strong> <%= @student.email %></p>
+<p><strong>Address:</strong> <%= @student.address %></p>
+<p><strong>City:</strong> <%= @student.city %></p>
+<p><strong>Primary Phone Number:</strong> <%= @student.primary_phone %></p>
+<p><strong>Secondary Phone Number:</strong> <%= @student.secondary_phone %></p>
+<p><strong>Student Grade:</strong> <%= @student.grade %></p>
+<p>
+	<strong>Your Courses:</strong>
+	<% for course in @student.courses %>
+		<li><%=course%></li>
+	<% end %>
+</p>
+
+<p>Here is the password you can use to log-in to your account, <strong>please change this as soon as you get the chance</strong>.</p>
+
+<p><strong>Password:</strong> <%= @student.password %></p>
+
+<p>Thanks, and if you need anything you can always reach us direct at (416) 402 - 8463 or email us at info@movermtutoring.com!</p>

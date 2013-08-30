@@ -1,14 +1,22 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container">
+<div class="container2" style="padding-right:70px; padding-left:70px">
       <nav>
+
+<ul class="nav pull-left">
+  <% if !student_signed_in? && !tutor_signed_in? && !admin_signed_in? %>
+  <li><%= link_to 'Home', root_path %></li>
+  <% end %>
+</ul>
 
 <ul class="nav pull-right">
 	<% if admin_signed_in? %>
 		<li><%= link_to 'Admin Home', admin_path(current_admin) %></li>
 		<li><%= link_to 'Student List', students_path %></li>
     <li><%= link_to 'Tutor List', tutors_path %></li>
+    <li><%= link_to 'Match-up List', matches_path %></li>
     <li><%= link_to 'Tutor Sessions List', tutor_sessions_path %></li>
+    <li><%= link_to 'Payment Schedule', payments_to_tutors_path %></li>
     <li><%= link_to 'Contract List', contracts_path %></li>
     <li><%= link_to 'First Session List', first_sessions_path %></li>
 		<li><%= link_to 'Sign Out',	destroy_admin_session_path, :method => :delete %></li>
@@ -29,6 +37,8 @@
   <li><%= link_to 'Tutor Home', tutor_path(current_tutor) %></li>
     <li><%= link_to "Submit Tutoring Hours", submit_hours_path(current_tutor) %></li>
     <li><%= link_to "Your Students", your_students_path(current_tutor) %></li>
+    <li><%= link_to "Your Sessions", your_sessions_path(current_tutor) %></li>
+    <li><%= link_to "Instructions",tutor_instructions_path %></li>
     <li><%= link_to 'Sign Out', destroy_student_session_path, :method => :delete %></li>
   <% end %>
 </ul>

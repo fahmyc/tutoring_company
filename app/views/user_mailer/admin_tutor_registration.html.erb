@@ -1,0 +1,18 @@
+<h2>You've just put in a new Tutor.</h2>
+
+<p>Tutor Name: <%= @tutor.name %></p>
+<p>Email: <%= @tutor.email %></p>
+<p>Address: <%= @tutor.address %></p>
+<p>City: <%= @tutor.city %></p>
+<p>Postal Code: <%= @tutor.postal_code %></p>
+<p>Primary Phone Number: <%= @tutor.primary_phone %></p>
+<p>Secondary Phone Number: <%= @tutor.secondary_phone %></p>
+<p>Notes: <%= @tutor.notes %></p>
+<p>
+	Tutor Courses:
+	<% for course in @tutor.courses %>
+		<li><%=course%></li>
+	<% end %>
+</p>
+
+<p>Password: <%= @tutor.password %></p>

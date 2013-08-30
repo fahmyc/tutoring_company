@@ -10,6 +10,8 @@
 			<th>Student Name</th>
 			<th>First session?</th>
 			<th>Number of Hours</th>
+			<th>Wage</th>
+			<th>Total Pay</th>
 			<th>Date</th>
 			<th>Time</th>
 			<th>Notes</th>
@@ -19,6 +21,7 @@
 <tbody>
 <% @tutor_sessions.each do |session| %>
 	<% tutor = Tutor.find(session.tutor_id) %>
+	<% student = Student.find(session.student_id) %>
 	<tr>
 		<td><%= session.id %></td>
 		<td><strong><%= session.week %></strong></td>
@@ -26,8 +29,42 @@
 		<td><%= session.student_name %></td>
 		<td><%= session.first_session %></td>
 		<td><%= session.number_of_hours %></td>
+		<td>
+			<% @match_array = Match.find(:all, :conditions => {:student_id => student.id, :tutor_id => tutor.id}) %>
+			<% @match_id = @match_array.collect(&:id) %>
+			<% for x in @match_id %>
+				<% mid = x %>
+			<% end %>
+
+			<% @match = Match.find(mid) %>
+			<% if  @match_array.empty? %>
+				NO MATCH
+			<% else %>
+
+				<% if session.first_session? %>
+					$20 (FIRST SESSION) 
+					<% if @match.wage.nil? %>
+						<%= link_to "Update", edit_match_path(@match.id) %>
+					<% end %>
+				<% else %>
+					<% if @match.wage.nil? %>
+						<%= link_to "Update", edit_match_path(@match.id) %>
+					<% else %>
+						$<%= @match.wage %>
+					<% end %>
+				<% end %>	
+			<% end %>		
+		</td>
+		<td>
+			<% if session.first_session? %>
+				20
+			<% else %>
+				<%= @match.wage.to_f * session.number_of_hours %>
+			<% end %>
+		</td>
 		<td><%= session.date %></td>
 		<td><%= session.time %></td>
+
 		<td><%= session.notes %></td>
 	</tr>
 <% end %>

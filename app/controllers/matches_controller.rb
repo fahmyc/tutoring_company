@@ -11,4 +11,21 @@ class MatchesController < ApplicationController
 	    end
 	end
 
+	def index
+		@matches = Match.all
+	end
+
+	def edit_match
+		@match = Match.find(params[:id])
+		@wages = [20, 22.50, 25, 27.50, 30, 32.50, 35]
+	end
+
+	def update
+		@match = Match.find(params[:id])
+
+		@match.update_attributes(wage: params[:match][:wage])
+
+		redirect_to matches_path
+	end
+
 end

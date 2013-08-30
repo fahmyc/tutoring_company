@@ -1,0 +1,16 @@
+Pick a week:
+<% for week in @weeks %>
+	<li><%= link_to "Week #{week}", weekly_payments_to_tutors_path(week) %></li>
+<% end %>
+<!--
+<table id = "inbox_question_list", class="display">
+	<thead>
+		<tr>
+			<th>Week</th>
+			<th>Tutor Name</th>
+			<th>Number of Hours</th>
+			<th>Total Pay</th>
+		</tr>
+	</thead>
+
+-->

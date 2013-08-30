@@ -1,0 +1,38 @@
+<p>Hello <%= @tutor.name %>,</p>
+
+<p>
+Welcome to Mind Over Matter Tutoring!
+</p> 
+
+<p><strong>What is this back-office website used for?</strong></p>
+<ul>
+	<li>Submitting your hours after your sessions</li>
+	<li>Track your next sessions with new students</li>
+	<li>Track all your past hours</li>
+	<li>See a list of all your students and their contact information</li>
+</ul>
+
+
+<p>
+Here is your user and log-in information, if you ever need to add courses or change any information please let me know by calling (416) 402 - 8463 or sending me an email at chris.fahmy@movermtutoring.com! To log in, use your email and the password.
+</p>
+
+<p><strong>Tutor Name:</strong> <%= @tutor.name %></p>
+<p><strong>Email:</strong> <%= @tutor.email %></p>
+<p><strong>Address:</strong> <%= @tutor.address %></p>
+<p><strong>City:</strong> <%= @tutor.city %></p>
+<p><strong>Postal Code:</strong> <%= @tutor.postal_code %></p>
+<p><strong>Primary Phone Number:</strong> <%= @tutor.primary_phone %></p>
+<p><strong>Secondary Phone Number:</strong> <%= @tutor.secondary_phone %></p>
+<p>
+	Your Courses:
+	<% for course in @tutor.courses %>
+		<li><%=course%></li>
+	<% end %>
+</p>
+
+<p>Here is the password you can use to log-in to your account, <strong>please change this as soon as you get the chance</strong>.</p>
+
+<p><strong>Password:</strong> <%= @tutor.password %></p>
+
+<p>Thanks, and if you need anything you can always reach me at (416) 402 - 8463 or email me at chris.fahmy@movermtutoring.com!</p>

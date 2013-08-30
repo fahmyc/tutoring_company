@@ -1,0 +1,49 @@
+<p>Hey <%= @tutor.name %>,</p>
+
+<p>You have a new student! Here is the student's information and any notes I have for you regarding the new student.</p>
+
+<table border="1">
+	<tr>
+		<th>Student Name</th>
+		<td><%= @student.student_name %></td>
+	</tr>
+	<tr>
+		<th>Parent Name</th>
+		<td><%= @student.parent_name %></td>
+	</tr>
+	<tr>
+		<th>Date of First Session</th>
+		<td><%= @first_session.date %></td>
+	</tr>
+	<tr>
+		<th>Time of First Session</th>
+		<td><%= @first_session.time %></td>
+	</tr>
+	<tr>
+		<th>Address</th>
+		<td><%= @student.address %></td>
+	</tr>
+	<tr>
+		<th>Student's Phone Number</th>
+		<td><%= @student.primary_phone %></td>
+	</tr>
+	<tr>
+		<th>Student's Email</th>
+		<td><%= @student.email %></td>
+	</tr>
+	<tr>
+		<th>Student's grade</th>
+		<td><%= @student.grade %></td>
+	</tr>
+	<tr>
+		<th>Subject</th>
+		<td><%= @first_session.subject %></td>
+	</tr>	
+	<tr>
+		<th>Notes</th>
+		<td><%= @first_session.tutor_notes %></td>
+	</tr>
+</table>
+
+
+<p>Thanks, let me know if you need anything else!</p>

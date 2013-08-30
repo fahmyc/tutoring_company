@@ -1,0 +1,5 @@
+Pick a week:
+<% weeks = [1..52] %>
+<% for week in weeks %>
+	<%= link_to "Week #{week}", weekly_payments_to_tutors_path(week) %>
+<% end %>

@@ -14,23 +14,27 @@
 <div class="span4">
 	<h4>Your contract information:</h4>
 
-	<% if @student_contract.any? %>
-	<% if @correct_contract.hours_left.to_f > 0 %>
-		You have <strong><%= @correct_contract.hours_left %> hours</strong> remaining.
-<br>
-			<% if @correct_contract.status == "paid" %>
-				<span class="badge badge-success">PAID</span>
-			<% elsif @correct_contract.status == "cancelled" %>
-				<span class="badge badge-danger">Cancelled</span>
-			<% else %>
-				<span class="badge badge-warning">NOT PAID</span>
-			<% end %>
+	<% if @student_contract.any? && @student_contract.count<2 %>
+		<% if @correct_contract.hours_left.to_f > 0 %>
+			You have <strong><%= @correct_contract.hours_left %> hours</strong> remaining.
+	<br>
+				<% if @correct_contract.status == "paid" %>
+					<span class="badge badge-success">PAID</span>
+				<% elsif @correct_contract.status == "cancelled" %>
+					<span class="badge badge-danger">Cancelled</span>
+				<% else %>
+					<span class="badge badge-warning">NOT PAID</span>
+				<% end %>
 
+		<% end %>
+	<% elsif !@student_contract.any? %>
+		<p>You have <strong> no sessions </strong> remaining on the contract.</p>
+		<p><font color="red">You owe <strong><%=@hours_in_arrears %> hours </strong>.</font></p>
 	<% end %>
-	<% else %>
-		You have <strong> no sessions </strong> remaining.
+
+	<% if @student_contract.count>1 %>
+		You have <strong><%= @hours_remaining_in_multiple_contracts %> hours</strong> remaining.	
 	<% end %>
-	
 </div>
 
 <div class="span1">

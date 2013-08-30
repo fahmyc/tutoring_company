@@ -8,6 +8,11 @@
 		<h5>Address: <%= @student.address %></h5>
 		<h5>Primary Phone: <%= @student.primary_phone %></h5>
 		<h5>Secondary Phone: <%= @student.secondary_phone %></h5>
+		<h5>Courses:</h5><% for course in @student.courses %>
+			
+				<%=course%>,
+			<% end %>
+
 	</div>
 
 	<div class="span6">
@@ -40,10 +45,30 @@
 			</tr>
 			<% end %>
 		</table>
+
 	</div>
 		<% else %>
 			First Session has not been scheduled yet.
 		<% end %>
+<br><br>
+		<%= button_to "Edit Recommendations", edit_recommendations_path(current_admin, @student), class: "btn btn-primary" %>
+		<% if !@student.recommended_by_student.nil? %>
+			<% s = Student.find(@student.recommended_by_student) %>
+			<%= @student.student_name %> was recommended by <strong><%= s.student_name %></strong>.
+			<br><br>
+		<% elsif !@student.recommended_by_other.nil? %>
+			<%= @student.student_name %> was recommended by <%= @student.recommended_by_other %>.
+			<br><br>
+		<% end %>
+
+		<h5>Student(s) that <%= @student.student_name %> has referred to me:</h5>
+			<% if !@student.recommendations.nil? %>
+				<% for referral in @student.recommendations %>
+					<li><%= referral %></li>
+				<% end %>
+			<% else %>
+				No referrals yet.
+			<% end %>
 
 	</div>
 </div>

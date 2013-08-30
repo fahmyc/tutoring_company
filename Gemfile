@@ -1,9 +1,6 @@
 source 'https://rubygems.org'
-
 #source :rubygems
 #http://efreedom.com/Question/1-9686870/Find-Gem-Therubyracer-Linux-Server-Passenger
-
-
 
 gem 'rails', '3.2.13'
 gem 'bootstrap-sass', '2.1'
@@ -11,16 +8,11 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
-
 gem 'jquery-rails', '~> 2.0.3'
-
-gem 'jquery-rails', '2.0.2'
-
 gem 'devise'
 gem 'simple_form'
 gem 'jquery-ui-rails'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
-
 gem 'crypt-rot13'
 gem 'yaml_db'
 #gem "less-rails", "~> 2.3.3"
@@ -36,12 +28,6 @@ gem 'yaml_db'
 
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
-
-gem 'activerecord-reputation-system', require: 'reputation_system'
-
-group :development, :test do
-  gem 'sqlite3', '1.3.5'
-
   gem 'rspec-rails', '2.11.0'
   # gem 'guard-rspec', '1.2.1'
   # gem 'guard-spork', '1.2.0'  
@@ -68,11 +54,9 @@ group :test do
 end
 
 group :production do
-  #gem 'mysql'
-  gem 'pg', '0.12.2'
+  gem 'mysql'
+  #gem 'pg', '0.12.2'
 
-=======
-  gem 'pg', '0.12.2'
 end
 
 group :development do

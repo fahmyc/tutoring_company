@@ -5,16 +5,22 @@ class RegistrationsController < Devise::RegistrationsController
 
     if resource.save
       if resource.is_a?(Student)
+        @student = resource
+        UserMailer.admin_student_registration(@student).deliver
+        #UserMailer.student_side_registration(@student).deliver
         flash[:success] = "Student Added!"
         expire_session_data_after_sign_in!
         respond_with resource, :location => admin_student_profile_path(resource)
       else 
+        @tutor = resource
+        UserMailer.admin_tutor_registration(@tutor).deliver
+        #UserMailer.tutor_side_registration(@tutor).deliver
         flash[:success] = "Tutor Added!"
         expire_session_data_after_sign_in!
         respond_with resource, :location => admin_home_path(current_admin)
       end        
-  	else
-      render 'static_pages/home'
+    else
+      render 'static_pages/bad'
     end
   end
 

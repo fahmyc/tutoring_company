@@ -1,7 +1,7 @@
 <h1>Contract Edit</h1>
 
 <h2>Student Name: <%= @student.student_name %></h2>
-
+CAN ONLY HAVE TWO CONTRACTS ONGOING AT THE SAME TIME!
 
 <h2>New Contract:</h2>
 <div class = "row">
@@ -11,12 +11,13 @@
 
   	<%= f.input :contract_type, :label => (raw("<strong>Contract Type</strong>")), collection: ["10 hour", "20 hour", "See notes"], :as => :radio, :item_wrapper_class => 'inline'   %>
   	<%= f.input :hours_left, :label => (raw("<strong>Hours Left</strong>")), :required => true %>
-    <%= f.input :tutor_1_id, :label => (raw("<strong>Tutor 1</strong>")), collection: @tutors, :as => :radio, :item_wrapper_class => 'inline' %>
-    <%= f.input :tutor_2_id, :label => (raw("<strong>Tutor 2</strong>")), collection: @tutors, :as => :radio, :item_wrapper_class => 'inline' %>
-    <%= f.input :tutor_3_id, :label => (raw("<strong>Tutor 3</strong>")), collection: @tutors, :as => :radio, :item_wrapper_class => 'inline' %>
+    <%= f.input :tutor_1_id, :label => (raw("<strong>Tutor 1</strong>")), collection: @tutors, :as => :select, :item_wrapper_class => 'inline' %>
+    <%= f.input :tutor_2_id, :label => (raw("<strong>Tutor 2</strong>")), collection: @tutors, :as => :select, :item_wrapper_class => 'inline' %>
+    <%= f.input :tutor_3_id, :label => (raw("<strong>Tutor 3</strong>")), collection: @tutors, :as => :select, :item_wrapper_class => 'inline' %>
     <%= f.input :student_id, as: :hidden, :input_html => { :value => @student.id } %> 
     <br>
-    <%= f.input :rate, :label => (raw("<strong>Rate</strong> ($42.50 for regular high school, $37.50 for regular elementary school)")) %>    
+    <%= f.input :rate, :label => (raw("<strong>Rate</strong> ($42.50 for regular high school, $37.50 for regular elementary school)")) %> 
+    <%= f.input :payment_information, input_html: {style: 'height:100px; width:500px;'} %> 
     <%= f.input :notes, input_html: {style: 'height:100px; width:500px;'} %>
 
 
@@ -29,5 +30,12 @@
     <% for tutor in @tutors %>
       <li><%= tutor.id %> &nbsp <%= tutor.name %></li>
     <% end %>
+    <br><br>
+<h5>Payment Information Regular Text</h5>
+    <p>The total for the 10 hours of sessions at $42.50/hour will be $425. The invoice has been attached to this email????</p>
+
+    <p>If, for any reason, you wish to cancel the contract at any time, you will be asked to pay a 15% admin fee for the amount remaining on the contract. The rest of the remaining money on the contract will be mailed to you 1-2 weeks after the cancellation.</p>
+
+    <p>There are two methods of payment, the first is a Paypal payment you can make on your home page. The second way is payment via an email money transfer. For email money transfers please send the payment to payments@movermtutoring.com and please reply to this email with the password you will be using. </p>
 </div>
 </div>

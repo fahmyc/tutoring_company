@@ -1,0 +1,39 @@
+Number of sessions this week: <%= @sessions_this_week.count %>
+
+<h1>Payments for Week <%= @week %></h1>
+
+<table id = "inbox_question_list", class="display">
+	<thead>
+		<tr>
+			<th>Week</th>
+			<th>Tutor Name</th>
+			<th>Number of Hours</th>
+			<th>Total Pay</th>
+		</tr>
+	</thead>
+
+
+<!-- THIS IS NOT RIGHT!!!-->
+	<tbody>
+		<% @session_this_week.each do |session| %>
+			<% tutor = Tutor.find(session.tutor_id) %>
+			<% student = Student.find(session.student_id) %>
+		<tr>
+			<td><%= session.week %></td>
+			<td><strong><%= tutor.name %></strong></td>
+			<td>
+				<% if match.wage.nil? %>
+					<%= link_to "Edit match to update wage", edit_match_path(match.id) %>
+				<% else %>
+					$<%= match.wage %>
+				<% end %>
+			</td>
+			<td><%= match.created_at.strftime("%I:%M %p") %> on <%= match.created_at.strftime("%d %b. %Y") %></td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>
+
+
+
+

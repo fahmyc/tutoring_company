@@ -3,17 +3,17 @@
 <%= simple_form_for(@tutor_session) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  	<%= f.input :student_name,:label => (raw("<strong>Student Name</strong>")), collection: @student_names, :as => :radio, :item_wrapper_class => 'inline' %>
+  	<%= f.input :student_name,:label => (raw("<strong>Student Name</strong>")), collection: @student_names, :as => :select, :item_wrapper_class => 'inline', :required => true %>
 
   	<%= f.input :tutor_id, as: :hidden, :input_html => { :value => @tutor.id } %>
   	<br>
-  	<%= f.input :date, :label => (raw("<strong>Date of Session</strong>")) %>
+  	<%= f.input :date, :label => (raw("<strong>Date of Session</strong>")), required: true %>
   	<br>
-  	<%= f.input :first_session,:label => (raw("<strong>First Session?</strong> (if you are substituting for another teacher, choose 'No')")), :as => :radio, :item_wrapper_class => 'inline' %>
+  	<%= f.input :first_session,:label => (raw("<strong>First Session?</strong> (if you are substituting for another teacher, choose 'No')")), :as => :select, :item_wrapper_class => 'inline', required: true  %>
   	<br>
-  	<%= f.input :number_of_hours,:label => (raw("<strong>Number of hours</strong>")), collection: [1, 1.5, 2, 2.5, 3], :as => :radio, :item_wrapper_class => 'inline', :hint => "&nbsp&nbsp&nbsp If the session was longer than 3 hours, please send me an email" %>
+  	<%= f.input :number_of_hours,:label => (raw("<strong>Number of hours</strong>")), collection: [1, 1.5, 2, 2.5, 3], :as => :select, :item_wrapper_class => 'inline', :hint => "&nbsp&nbsp&nbsp If the session was longer than 3 hours, please send me an email", required: true %>
     <br>
-    <%= f.input :time,:label => (raw("<strong>Time of Session</strong>")), collection: @hours, :as => :radio, :item_wrapper_class => 'inline' %>
+    <%= f.input :time,:label => (raw("<strong>Time of Session</strong>")), collection: @hours, :as => :select, :item_wrapper_class => 'inline', required: true %>
     <br>
     <%= f.input :notes,:label => (raw("<strong>Notes</strong>")), input_html: {style: 'height:50px; width:800px;'} %>
 

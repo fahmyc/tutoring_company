@@ -1,0 +1,36 @@
+<h1>Your Sessions</h1>
+
+<table id = "inbox_question_list", class="display">
+	<thead>
+		<tr>
+			<th>Student Name</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Number of Hours</th>
+			<th>Your Notes</th>
+			<th>First Time?</th>
+			<!--<th>Edit?</th>-->
+		</tr>
+	</thead>
+
+<tbody>
+<% @sessions.each do |session| %>
+	<% student = Student.find(session.student_id) %>
+	<tr>
+		<td><strong><%= student.student_name %></strong></td>
+		<td><strong><%= session.date %></strong></td>
+		<td><%= session.time %></td>
+		<td><%= session.number_of_hours %></td>
+		<td><%= session.notes %></td>
+		<td>
+			<% if session.first_session? %>
+				YES
+			<% else %>
+				NO
+			<% end %>
+		</td>
+		<!--<td><%= link_to "Click here to edit", edit_session_path(current_tutor, session.id) %></td>-->
+	</tr>
+<% end %>
+</tbody>
+</table>

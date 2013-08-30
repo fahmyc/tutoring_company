@@ -1,1 +1,32 @@
 <h1>Your Students</h1>
+
+
+<table id = "inbox_question_list", class="display">
+	<thead>
+		<tr>
+			<th>Student Name</th>
+			<th>Parent Name</th>
+			<th>Primary Phone</th>
+			<th>Secondary Phone</th>
+			<th>Email</th>
+			<th>Address</th>
+			<th>City</th>
+		</tr>
+	</thead>
+
+<tbody>
+<% @students.each do |student| %>
+	<tr>
+		<td><strong><%= student.student_name %></strong></td>
+		<td><strong><%= student.parent_name %></strong></td>
+		<td>
+			<%= student.primary_phone %>
+		</td>
+		<td><%= student.secondary_phone %></td>
+		<td><%= student.email %> </td>
+		<td><%= student.address %> </td>
+		<td><%= student.city %> </td>
+	</tr>
+<% end %>
+</tbody>
+</table>

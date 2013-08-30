@@ -1,16 +1,32 @@
-<h2>Sign up</h2>
+<h2>New StudentGOOD</h2>
+
+  	<% @courses = ["Grade 1-6 (except French)", "Grade 7 Math","Grade 8 Math", "Grade 9 Math", "Grade 10 Math", "Grade 11 Math", "Grade 12 Math", "Grade 7 Science", "Grade 8 Science", "Grade 9 Science", "Grade 10 Science", "Grade 1-8 French", "Grade 9-12 French", "Grade 1-8 English", "Grade 9-12 English", "Grade 11 Chemistry", "Grade 12 Chemistry", "Grade 11 Biology", "Grade 12 Biology", "Grade 11 Physics", "Grade 12 Physics", "Grade 9-12 Religion", "Grade 9-12 Geography", "Grade 9-12 History", "Grade 9-12 Economics", "Grade 9-12 Business" ] %>
+  	<% @grades = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] %>
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email, :required => true, :autofocus => true %>
+    <%= f.input :parent_name, :required => true %>
+    <%= f.input :student_name, :required => true %>
+    <%= f.input :email, :required => true %>
+    <%= f.input :gender, collection: ["Male", "Female"], :as => :radio, :item_wrapper_class => 'inline' %>
+    <%= f.input :address, :required => true %>
+    <%= f.input :courses, collection: @courses, :as => :check_boxes, :required => true, :item_wrapper_class => 'inline' %>
+    <%= f.input :primary_phone, :required => true %>
+    <%= f.input :secondary_phone %>
+    <%= f.input :city, :required => true %>
+    <%= f.input :grade, collection: @grades, :as => :radio, :item_wrapper_class => 'inline' %>
+    <%#= f.input :tutor_assigned, collection: @tutor_names, :as => :check_boxes, :item_wrapper_class => 'inline' %>
+    <%= f.input :school %>
+    <%= f.input :how_they_heard %>
+    <%= f.input :notes, input_html: {style: 'height:100px; width:500px;'} %>
     <%= f.input :password, :required => true %>
     <%= f.input :password_confirmation, :required => true %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, class: "btn btn-large btn-primary" %>
   </div>
 <% end %>
 

@@ -1,0 +1,31 @@
+<h1>Matches Index</h1>
+
+<table id = "inbox_question_list", class="display">
+	<thead>
+		<tr>
+			<th>Tutor Name</th>
+			<th>Student Name</th>
+			<th>Wage</th>
+			<th>Created At</th>
+		</tr>
+	</thead>
+
+<tbody>
+<% @matches.each do |match| %>
+	<% tutor = Tutor.find(match.tutor_id) %>
+	<% student = Student.find(match.student_id) %>
+	<tr>
+		<td><strong><%= tutor.name %></strong></td>
+		<td><strong><%= student.student_name %></strong></td>
+		<td>
+			<% if match.wage.nil? %>
+				<%= link_to "Edit match to update wage", edit_match_path(match.id) %>
+			<% else %>
+				$<%= match.wage %>
+			<% end %>
+		</td>
+		<td><%= match.created_at.strftime("%I:%M %p") %> on <%= match.created_at.strftime("%d %b. %Y") %></td>
+	</tr>
+<% end %>
+</tbody>
+</table>
